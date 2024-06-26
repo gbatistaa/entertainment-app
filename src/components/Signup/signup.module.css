@@ -1,0 +1,15 @@
+section.loginPage {
+  height: 100vh;
+  width: 100vw;
+  background-color: #10141e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.loginDiv {
+  height: 50%;
+  width: 25rem;
+  background-color: #161d2f;
+  border-radius: 25px;
+}
