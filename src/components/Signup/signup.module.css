@@ -1,15 +1,63 @@
-section.loginPage {
-  height: 100vh;
-  width: 100vw;
-  background-color: #10141e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-div.loginDiv {
-  height: 50%;
+form.signupForm {
+  height: 28rem;
   width: 25rem;
   background-color: #161d2f;
   border-radius: 25px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p.signupHeading {
+  font-size: 2rem;
+  width: 100%;
+}
+
+input.inputSignup {
+  position: relative;
+  width: 100%;
+  height: 3.5rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #5a698f;
+  outline: none;
+  padding: 3%;
+  font-size: 1rem;
+  font-weight: 300;
+  caret-color: #fc4747;
+}
+
+button.signupButton {
+  height: 3.5rem;
+  width: 100%;
+  border: none;
+  background-color: #fc4747;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 6px;
+  transition: all ease-out 0.15s;
+}
+
+button.signupButton:hover {
+  background-color: #fc6464;
+}
+
+p.linkLogin {
+  width: 68%;
+  display: flex;
+  justify-content: space-between;
+}
+
+p.linkLogin a {
+  color: #fc4747;
+  transition: all ease-out 0.15s;
+}
+
+p.linkLogin a:hover {
+  color: #161d2f;
+  background-color: #fc4747;
+  border-radius: 2px;
 }
