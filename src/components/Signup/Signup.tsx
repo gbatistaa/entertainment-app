@@ -1,20 +1,39 @@
-import { Link } from "react-router-dom";
-import styles from "./login.module.css";
+import { FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./signup.module.css";
 
-export function SignUp() {
+export function Signup() {
+  const navigate = useNavigate();
+
+  const handleUserSignup = (event: FormEvent) => {
+    event.preventDefault();
+    navigate("/home");
+  };
+
   return (
-    <section className={styles.loginPage}>
-      <div className={styles.loginDiv}>
-        <h1>Login</h1>
-        <form>
-          <input type="text" name="email" id="" className={styles.inputLogin} />
-          <input type="password" name="password" id="" className={styles.inputLogin} />
-          <button type="submit">Login to your account</button>
-        </form>
-        <p>
-          Already <Link to="/login" />
-        </p>
-      </div>
-    </section>
+    <form className={styles.signupForm} onSubmit={(e) => handleUserSignup(e)}>
+      <p className={styles.signupHeading}>Sign Up</p>
+      <input type="text" name="text" className={styles.inputSignup} placeholder="Email adress" autoComplete="off" />
+      <input
+        type="text"
+        name="password"
+        className={styles.inputSignup}
+        placeholder="Your Password"
+        autoComplete="off"
+      />
+      <input
+        type="text"
+        name="repeated-password"
+        className={styles.inputSignup}
+        placeholder="Reapeat your password"
+        autoComplete="off"
+      />
+      <button type="submit" className={styles.signupButton}>
+        Create an account
+      </button>
+      <p className={styles.linkLogin}>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
+    </form>
   );
 }
