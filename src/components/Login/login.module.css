@@ -1,34 +1,18 @@
-section.loginPage {
-  height: 100vh;
-  width: 100vw;
-  background-color: #10141e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 300;
-}
-
-div.loginDiv {
-  height: 50%;
+form.loginForm {
+  aspect-ratio: 1/1;
   width: 25rem;
   background-color: #161d2f;
   border-radius: 25px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 p.loginHeading {
   font-size: 2rem;
-}
-
-div.loginDiv form {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
 
 input.inputLogin {
@@ -76,16 +60,4 @@ p.linkSignup a:hover {
   color: #161d2f;
   background-color: #fc4747;
   border-radius: 2px;
-}
-
-@keyframes blink {
-
-
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
 }
