@@ -1,0 +1,10 @@
+div.trendingContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+div.movieCardsContainer {
+  display: flex;
+  column-gap: 7px;
+  overflow-x: scroll;
+}
