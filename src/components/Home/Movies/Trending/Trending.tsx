@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import * as api from "../../../ts/Api/links";
+import * as api from "../../../../ts/Api/links";
 import styles from "./trending.module.css";
 
-import { fetchingMovies, getMovieGenreByInfo } from "../../../ts/fetching/fetchingData";
-import { Movie } from "../../../ts/interfaces/Movie";
+import { fetchingMovies, getMovieGenreByInfo } from "../../../../ts/fetching/fetchingData";
+import { Movie } from "../../../../ts/interfaces/Movie";
 import { MovieCard } from "../Card/MovieCard";
 
 export function TrendingMovies() {
@@ -25,17 +25,19 @@ export function TrendingMovies() {
   }, []);
 
   return (
-    <div className={styles.trendingContainer}>
-      <h1>TRENDING</h1>
-      <div className={styles.movieCardsContainer}>
-        {trendingMovies.map((tm: Movie, index) => {
-          return (
-            <div key={index}>
-              <MovieCard movieInfo={tm} />
-            </div>
-          );
-        })}
+    <section className={styles.moviesGrid}>
+      <div className={styles.trendingContainer}>
+        <h1>TRENDING</h1>
+        <div className={styles.movieCardsContainer}>
+          {trendingMovies.map((tm: Movie, index) => {
+            return (
+              <div key={index}>
+                <MovieCard movieInfo={tm} />
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
