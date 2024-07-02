@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaRegBookmark, FaStar } from "react-icons/fa";
-import * as api from "../../../ts/Api/links";
-import { fetchMoviePoster } from "../../../ts/fetching/fetchingData";
-import { Movie } from "../../../ts/interfaces/Movie";
+import * as api from "../../../../ts/Api/links";
+import { fetchMoviePoster } from "../../../../ts/fetching/fetchingData";
+import { Movie } from "../../../../ts/interfaces/Movie";
 import styles from "./movieCard.module.css";
 
 export function MovieCard({ movieInfo }: { movieInfo: Movie }) {
