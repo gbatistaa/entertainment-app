@@ -2,7 +2,7 @@ import { Genre } from "../interfaces/Genre";
 
 export const fetchingMovies = async (moviesUrl: string, apiKey: string, movieId?: number) => {
   try {
-    const data = await fetch(`${moviesUrl}${movieId === undefined ? "" : movieId}?${apiKey}`);
+    const data = await fetch(`${moviesUrl}${movieId === undefined ? "" : movieId}?api_key=${apiKey}`);
     const response = await data.json();
     return movieId === undefined ? response.results : response;
   } catch (error: unknown) {
@@ -11,19 +11,27 @@ export const fetchingMovies = async (moviesUrl: string, apiKey: string, movieId?
   }
 };
 
-export const fetchingMoviesByGenre = async (
-  moviesUrl: string,
-  genresUrl: string,
-  apiKey: string,
-  genreSelected?: string,
-) => {
+export const getMovieGenreByInfo = async (genresUrl: string, apiKey: string, genreSelectedInfo: string | number) => {
+  try {
+    const genresData = await fetch(`${genresUrl}?api_key=${apiKey}`);
+    const genresJson = await genresData.json();
+    const genresArray: Genre[] = genresJson.genres;
+    const genreSelected = genresArray.filter((g) => {
+      if (typeof genreSelectedInfo === "string") return g.name.toLowerCase() === genreSelectedInfo?.toLowerCase();
+      else return g.id === genreSelectedInfo;
+    })[0];
+    return typeof genreSelectedInfo === "string" ? genreSelected.id : genreSelected.name;
+  } catch (error: unknown) {
+    const tratedError: Error = error as Error;
+    return tratedError;
+  }
+};
+
+export const fetchingMoviesArray = async (moviesUrl: string, genresUrl: string, genreSelected: string) => {
   try {
     // Finding the genre id by the given name:
 
-    const genresData = await fetch(`${genresUrl}?${apiKey}`);
-    const genresJson = await genresData.json();
-    const genresArray: Genre[] = genresJson.genres;
-    const genreSelectedId = genresArray.filter((g) => g.name.toLowerCase() === genreSelected?.toLowerCase())[0].id;
+    const genreSelectedId = getMovieGenreByInfo(genresUrl, genreSelected, genreSelected);
 
     // Using the found id to fetch the movie list:
 
@@ -36,4 +44,9 @@ export const fetchingMoviesByGenre = async (
     console.log(error);
     return new Error(`${error}`);
   }
+};
+
+export const fetchMoviePoster = async (posterUrl: string, posterPath: string) => {
+  const poster = await fetch(`${posterUrl}${posterPath}`);
+  return poster;
 };
