@@ -3,6 +3,7 @@ export interface Movie {
   readonly vote_average: number;
   readonly release_date: string;
   readonly overview: string;
-  readonly poster_path: string;
+  readonly backdrop_path: string;
+  readonly genre_ids: number[];
   isMovie: boolean;
 }
