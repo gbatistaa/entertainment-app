@@ -1,0 +1,52 @@
+div.movieCardContainer {
+  height: 15rem;
+  width: 30rem;
+  position: relative;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: 50% 30%;
+}
+
+div.movieCard {
+  background-color: rgba(0, 0, 0, 0.438);
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+  position: relative;
+
+}
+
+div.movieInfoContainer {
+  height: 5rem;
+  width: 23rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+div.movieInfoDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+div.bookmarkContainer {
+  background-color: #5a698f63;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p.movieInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-wrap: wrap;
+}
