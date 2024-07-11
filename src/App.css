@@ -17,5 +17,5 @@ div.App {
   justify-content: center;
   align-items: center;
   font-weight: 300;
-  overflow-x: hidden
+  overflow: hidden;
 }
