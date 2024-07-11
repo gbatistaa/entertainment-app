@@ -10,6 +10,16 @@ export const fetchingMovies = async (moviesUrl: string, apiKey: string, movieId?
     return [];
   }
 };
+export const fetchingSeries = async (seriesUrl: string, apiKey: string, seriesId?: number) => {
+  try {
+    const data = await fetch(`${seriesUrl}${seriesId === undefined ? "" : seriesId}api_key=${apiKey}`);
+    const response = await data.json();
+    return response.results;
+  } catch (error: unknown) {
+    console.log(error);
+    return [];
+  }
+};
 
 export const getMovieGenreByInfo = async (genresUrl: string, apiKey: string, genreSelectedInfo: string | number) => {
   try {
