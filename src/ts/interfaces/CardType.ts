@@ -1,8 +1,8 @@
 import { Movie } from "./Movie";
+import { TvSeries } from "./TvSeries";
 
 export interface CardType {
-  movieInfo: Movie;
+  contentInfo: Movie | TvSeries;
   key: number;
   isRecommended: boolean;
-  isSeries: boolean;
 }
