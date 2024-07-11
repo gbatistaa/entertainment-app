@@ -1,4 +1,5 @@
 div.movieCardContainer {
+  height: 15rem;
   position: relative;
   border-radius: 1rem;
   background-size: cover;
@@ -7,14 +8,13 @@ div.movieCardContainer {
 
 div.movieCard {
   background-color: rgba(0, 0, 0, 0.438);
-  height: 15rem;
-  width: 30rem;
+  height: 100%;
+  width: 100%;
   border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   padding: 2rem;
   position: relative;
-
 }
 
 div.movieInfoContainer {
@@ -43,6 +43,7 @@ div.bookmarkContainer {
 }
 
 p.movieInfo {
+  width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
