@@ -3,21 +3,19 @@ import { useEffect, useState } from "react";
 import * as api from "../../../../ts/Api/links";
 import styles from "./trending.module.css";
 
-import { fetchingMovies, getMovieGenreByInfo } from "../../../../ts/fetching/fetchingData";
+import { fetchingMovies } from "../../../../ts/fetching/fetchingData";
 import { Movie } from "../../../../ts/interfaces/Movie";
-import { MovieCard } from "../Card/MovieCard";
+import { TvSeries } from "../../../../ts/interfaces/TvSeries";
+import { Card } from "../Card/Card";
 
-export function TrendingMovies() {
-  const initialTrendingState: Movie[] = [];
+export function Trending() {
+  const initialRecommendedState: Movie[] = [];
 
-  const [trendingMovies, setTrendingMovies] = useState(initialTrendingState);
+  const [trendingMovies, setRecommendedMovies] = useState(initialRecommendedState);
 
   const fetchMovies = async () => {
-    const trendingMoviesArray: Movie[] = await fetchingMovies(api.TRENDING, api.KEY);
-    console.log(trendingMoviesArray);
-    setTrendingMovies(trendingMoviesArray);
-    const genre = await getMovieGenreByInfo(api.GENRES, "hxcbdsbxh", 18);
-    console.log(genre);
+    const recommendedMoviesArray: Movie[] = await fetchingMovies(api.TRENDING, api.KEY);
+    setRecommendedMovies(recommendedMoviesArray);
   };
 
   useEffect(() => {
@@ -25,19 +23,13 @@ export function TrendingMovies() {
   }, []);
 
   return (
-    <section className={styles.moviesGrid}>
-      <div className={styles.trendingContainer}>
-        <h1>TRENDING</h1>
-        <div className={styles.movieCardsContainer}>
-          {trendingMovies.map((tm: Movie, index) => {
-            return (
-              <div key={index}>
-                <MovieCard movieInfo={tm} />
-              </div>
-            );
-          })}
-        </div>
+    <div className={styles.trendingContainer}>
+      <p className={styles.homepageSubheading}>Trending</p>
+      <div className={styles.movieCardsContainer}>
+        {trendingMovies.map((tm: Movie | TvSeries, index) => {
+          return <Card contentInfo={tm} key={index} isRecommended={false} />;
+        })}
       </div>
-    </section>
+    </div>
   );
 }
