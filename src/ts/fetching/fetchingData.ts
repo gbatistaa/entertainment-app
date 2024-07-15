@@ -5,7 +5,7 @@ export const fetchingMovies = async (moviesUrl: string, apiKey: string, movieId?
     const data = await fetch(`${moviesUrl}${movieId === undefined ? "" : movieId}?api_key=${apiKey}`);
     const response = await data.json();
     return movieId === undefined ? response.results : response;
-  } catch (error: unknown) {
+  } catch (error) {
     console.log(error);
     return [];
   }
@@ -15,7 +15,7 @@ export const fetchingSeries = async (seriesUrl: string, apiKey: string, seriesId
     const data = await fetch(`${seriesUrl}${seriesId === undefined ? "" : seriesId}api_key=${apiKey}`);
     const response = await data.json();
     return response.results;
-  } catch (error: unknown) {
+  } catch (error) {
     console.log(error);
     return [];
   }
@@ -31,9 +31,8 @@ export const getMovieGenreByInfo = async (genresUrl: string, apiKey: string, gen
       else return g.id === genreSelectedInfo;
     })[0];
     return typeof genreSelectedInfo === "string" ? genreSelected.id : genreSelected.name;
-  } catch (error: unknown) {
-    const tratedError: Error = error as Error;
-    return tratedError;
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -50,9 +49,8 @@ export const fetchingMoviesArray = async (moviesUrl: string, genresUrl: string, 
     const moviesByGenre = moviesByGenreJson.results;
 
     return moviesByGenre;
-  } catch (error: unknown) {
+  } catch (error) {
     console.log(error);
-    return new Error(`${error}`);
   }
 };
 
