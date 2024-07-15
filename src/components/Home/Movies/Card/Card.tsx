@@ -11,7 +11,7 @@ import styles from "./movieCard.module.css";
 
 export function Card({ contentInfo, key, isRecommended }: CardType) {
   const [poster, setPoster] = useState("");
-  const [movieGenre, setMovieGenre] = useState<string | number | Error>("");
+  const [contentGenre, setMovieGenre] = useState<string | number>("");
 
   useEffect(() => {
     const fetchingPoster = async () => {
@@ -25,11 +25,12 @@ export function Card({ contentInfo, key, isRecommended }: CardType) {
   useEffect(() => {
     const fetchingGenre = async () => {
       const mainGenre = contentInfo.genre_ids[0];
-      const contentGenre = await getMovieGenreByInfo(api.GENRES, api.KEY, mainGenre);
-      setMovieGenre(contentGenre as string | number);
+      const contentGenreData = await getMovieGenreByInfo(api.GENRES, api.KEY, mainGenre);
+      setMovieGenre(contentGenreData as string | number);
     };
     fetchingGenre();
-  }, [setMovieGenre, contentInfo.genre_ids]);
+    console.log(contentInfo.genre_ids);
+  }, [setMovieGenre, contentInfo.genre_ids, contentGenre, contentInfo]);
   return (
     <div
       key={key}
@@ -45,7 +46,7 @@ export function Card({ contentInfo, key, isRecommended }: CardType) {
                 : (contentInfo as Movie).release_date
               ).slice(0, 4)}
             </p>
-            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>{movieGenre}</p>
+            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>{contentGenre}</p>
             <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>
               <FaStar />
               {contentInfo.vote_average.toFixed(1)}
