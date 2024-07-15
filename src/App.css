@@ -19,3 +19,7 @@ div.App {
   font-weight: 300;
   overflow: hidden;
 }
+
+div.home {
+  width: 100%
+}
