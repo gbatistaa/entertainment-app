@@ -16,7 +16,7 @@ export function PageGuide() {
         <nav className={styles.pagesNavigate}>
           <ul>
             <li>
-              <Link to={"/home/main"}>
+              <Link to={"/home"}>
                 <IoGrid size={20} className={styles.navIcons} />
               </Link>
             </li>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaRegBookmark, FaStar } from "react-icons/fa";
 
-import * as api from "../../../../ts/Api/links";
-import { fetchMoviePoster, getMovieGenreByInfo } from "../../../../ts/fetching/fetchingData";
-import { CardType } from "../../../../ts/interfaces/CardType";
-import { Movie } from "../../../../ts/interfaces/Movie";
-import { TvSeries } from "../../../../ts/interfaces/TvSeries";
+import * as api from "../../../ts/Api/links";
+import { fetchMoviePoster, getMovieGenreByInfo } from "../../../ts/fetching/fetchingData";
+import { CardType } from "../../../ts/interfaces/CardType";
+import { Movie } from "../../../ts/interfaces/Movie";
+import { TvSeries } from "../../../ts/interfaces/TvSeries";
 import styles2 from "./card2.module.css";
 import styles from "./movieCard.module.css";
 
@@ -24,12 +24,16 @@ export function Card({ contentInfo, key, isRecommended }: CardType) {
 
   useEffect(() => {
     const fetchingGenre = async () => {
-      const mainGenre = contentInfo.genre_ids[0];
-      const contentGenreData = await getMovieGenreByInfo(api.GENRES, api.KEY, mainGenre);
+      let i = 0;
+      let contentGenreData = await getMovieGenreByInfo(api.GENRES, api.KEY, contentInfo.genre_ids[i]);
+      while (contentGenreData === undefined) {
+        i++;
+        if (i > contentInfo.genre_ids.length) break;
+        contentGenreData = await getMovieGenreByInfo(api.GENRES, api.KEY, contentInfo.genre_ids[i]);
+      }
       setMovieGenre(contentGenreData as string | number);
     };
     fetchingGenre();
-    console.log(contentInfo.genre_ids);
   }, [setMovieGenre, contentInfo.genre_ids, contentGenre, contentInfo]);
   return (
     <div
@@ -46,7 +50,9 @@ export function Card({ contentInfo, key, isRecommended }: CardType) {
                 : (contentInfo as Movie).release_date
               ).slice(0, 4)}
             </p>
-            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>{contentGenre}</p>
+            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>
+              {contentGenre === "Science Fiction" ? "Sci-Fi" : contentGenre}
+            </p>
             <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>
               <FaStar />
               {contentInfo.vote_average.toFixed(1)}
