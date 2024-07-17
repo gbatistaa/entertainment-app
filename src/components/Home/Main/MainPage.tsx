@@ -2,7 +2,7 @@ import styles from "./mainPage.module.css";
 
 import { IoSearch } from "react-icons/io5";
 import { Outlet } from "react-router-dom";
-import { PageGuide } from "./Movies/PageGuide/PageGuide";
+import { PageGuide } from "../PageGuide/PageGuide";
 
 export function MainPage() {
   return (
