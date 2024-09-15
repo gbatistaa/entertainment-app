@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-import * as api from "../../../../ts/Api/links";
+import * as api from "../../../../../../ts/Api/links";
 import "./slider.css";
 import styles from "./trending.module.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { fetchingMovies } from "../../../../ts/fetching/fetchingData";
-import { Movie } from "../../../../ts/interfaces/Movie";
-import { TvSeries } from "../../../../ts/interfaces/TvSeries";
-import { Card } from "../Card/Card";
+import { fetchingMovies } from "../../../../../../ts/fetching/fetchingData";
+import { Movie } from "../../../../../../ts/interfaces/Movie";
+import { TvSeries } from "../../../../../../ts/interfaces/TvSeries";
+import { Card } from "../../../../Cards/Card";
 
 export function Trending() {
   const initialRecommendedState: Movie[] = [];
