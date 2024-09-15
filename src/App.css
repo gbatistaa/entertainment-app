@@ -15,7 +15,6 @@ div.App {
   background-color: #10141e;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-weight: 300;
   overflow: hidden;
 }
