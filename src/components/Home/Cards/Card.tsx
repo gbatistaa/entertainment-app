@@ -15,12 +15,12 @@ export function Card({ contentInfo, key, isRecommended }: CardType) {
 
   useEffect(() => {
     const fetchingPoster = async () => {
-      const posterResponse = await fetchMoviePoster(api.IMAGE, contentInfo.backdrop_path);
-      const poster = posterResponse.url;
+      const posterResponse = await fetchMoviePoster(api.IMAGE, contentInfo);
+      const poster = (posterResponse as Response).url;
       setPoster(poster);
     };
     fetchingPoster();
-  }, [contentInfo.backdrop_path]);
+  }, [contentInfo]);
 
   useEffect(() => {
     const fetchingGenre = async () => {
