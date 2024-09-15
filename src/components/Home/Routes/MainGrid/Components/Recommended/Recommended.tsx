@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import * as api from "../../../../ts/Api/links";
-import { fetchingMovies, fetchingSeries } from "../../../../ts/fetching/fetchingData";
-import { scrambleMoviesWithSeries } from "../../../../ts/functions/scramble";
-import { Movie } from "../../../../ts/interfaces/Movie";
-import { TvSeries } from "../../../../ts/interfaces/TvSeries";
-import { Card } from "../Card/Card";
+import * as api from "../../../../../../ts/Api/links";
+import { fetchingMovies, fetchingSeries } from "../../../../../../ts/fetching/fetchingData";
+import { scrambleMoviesWithSeries } from "../../../../../../ts/functions/scramble";
+import { Movie } from "../../../../../../ts/interfaces/Movie";
+import { TvSeries } from "../../../../../../ts/interfaces/TvSeries";
+import { Card } from "../../../../Cards/Card";
 import styles from "./recommended.module.css";
 
 export function Recommended() {
@@ -34,7 +34,9 @@ export function Recommended() {
 
   useEffect(() => {
     if (trendingMovies.length > 0 && trendingSeries.length > 0) {
-      const all = scrambleMoviesWithSeries(trendingMovies, trendingSeries);
+      const all = scrambleMoviesWithSeries(trendingMovies, trendingSeries).filter(
+        (content: Movie | TvSeries) => content !== undefined,
+      );
       setScrambled(all);
     }
   }, [trendingMovies, trendingSeries]);
