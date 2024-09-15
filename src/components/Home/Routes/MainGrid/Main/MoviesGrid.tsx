@@ -1,7 +1,7 @@
 import styles from "./moviesGrid.module.css";
 
-import { Recommended } from "../Movies/Recommended/Recommended";
-import { Trending } from "../Movies/Trending/Trending";
+import { Recommended } from "../Components/Recommended/Recommended";
+import { Trending } from "../Components/Trending/Trending";
 
 export function MoviesGrid() {
   return (
