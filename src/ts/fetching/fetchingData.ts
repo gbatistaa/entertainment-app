@@ -1,4 +1,6 @@
 import { Genre } from "../interfaces/Genre";
+import { Movie } from "../interfaces/Movie";
+import { TvSeries } from "../interfaces/TvSeries";
 
 export const fetchingMovies = async (moviesUrl: string, apiKey: string, movieId?: number) => {
   try {
@@ -54,7 +56,14 @@ export const fetchingMoviesArray = async (moviesUrl: string, genresUrl: string, 
   }
 };
 
-export const fetchMoviePoster = async (posterUrl: string, posterPath: string) => {
-  const poster = await fetch(`${posterUrl}${posterPath}`);
-  return poster;
+export const fetchMoviePoster = async (posterUrl: string, content: Movie | TvSeries) => {
+  try {
+    if (content === undefined) throw Error("This content does not exist");
+    else {
+      const poster = await fetch(`${posterUrl}${content.backdrop_path}`);
+      return poster;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
