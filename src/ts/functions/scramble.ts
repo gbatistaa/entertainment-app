@@ -12,6 +12,5 @@ export const scrambleMoviesWithSeries = (moviesArray: Movie[], seriesArray: TvSe
     scrambledArray[firstIndex] = scrambledArray[secondIndex];
     scrambledArray[secondIndex] = pivot;
   }
-
   return scrambledArray;
 };
