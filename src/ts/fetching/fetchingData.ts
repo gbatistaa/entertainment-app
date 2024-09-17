@@ -87,3 +87,21 @@ export const fetchingMoviesListFromGenre = async (iterator: number, genreId: num
     }
   }
 };
+
+export const fetchGenresList = async (genresUrl: string, apiKey: string) => {
+  try {
+    const response = await fetch(`${genresUrl}?api_key=${apiKey}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch genres: ${response.status}`);
+    }
+    const genresDataJson = await response.json();
+    const genresArray: Genre[] = genresDataJson.genres;
+    return genresArray;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error fetching genres:", error.message);
+    } else {
+      console.error("An unknown error occurred");
+    }
+  }
+};
