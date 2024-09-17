@@ -9,8 +9,12 @@ export function Movies() {
   const [genres, setGenres] = useState(initialGenresListState);
 
   useEffect(() => {
-    const genresList: Genre[] = fetchGenresList(api.GENRES, api.KEY) as unknown as Genre[];
-    setGenres(genresList);
+    const fetchData = async () => {
+      const genresListResponse = await fetchGenresList(api.GENRES, api.KEY);
+      const genresListData = genresListResponse.genres;
+      setGenres(genresListData);
+    };
+    fetchData();
   }, []);
 
   return (
