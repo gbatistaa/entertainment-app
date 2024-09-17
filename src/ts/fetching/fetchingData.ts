@@ -67,3 +67,23 @@ export const fetchMoviePoster = async (posterUrl: string, content: Movie | TvSer
     console.log(error);
   }
 };
+
+export const fetchingMoviesListFromGenre = async (iterator: number, genreId: number) => {
+  try {
+    const moviesData = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${iterator}&sort_by=popularity.desc&with_genres=${genreId}&with_original_language=en`,
+    );
+    if (!moviesData.ok) {
+      throw new Error(`Failed to fetch genres: ${moviesData.status}`);
+    }
+    const moviesDataJson = await moviesData.json();
+    const movieDataResults: Movie[] = moviesDataJson.results;
+    return movieDataResults;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error fetching genres:", error.message);
+    } else {
+      console.error("An unknown error occurred");
+    }
+  }
+};
