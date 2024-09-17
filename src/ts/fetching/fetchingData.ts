@@ -95,8 +95,7 @@ export const fetchGenresList = async (genresUrl: string, apiKey: string) => {
       throw new Error(`Failed to fetch genres: ${response.status}`);
     }
     const genresDataJson = await response.json();
-    const genresArray: Genre[] = genresDataJson.genres;
-    return genresArray;
+    return genresDataJson;
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error("Error fetching genres:", error.message);
