@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { MainPage } from "./components/Home/Main/MainPage";
 import { MoviesGrid } from "./components/Home/Routes/MainGrid/Main/MoviesGrid";
+import { Movies } from "./components/Home/Routes/Movies/Movies";
 import { TvSeries } from "./components/Home/Routes/TV/TvSeries";
 import { Login } from "./components/Login/Login";
 import { Signup } from "./components/Signup/Signup";
@@ -17,14 +18,7 @@ function App() {
           <Route path="/home" element={<MainPage />}>
             <Route path="/home" element={<MoviesGrid />} />
             <Route path="/home/tvseries" element={<TvSeries />} />
-            <Route
-              path="/home/movies"
-              element={
-                <div>
-                  <h1>Movies</h1>
-                </div>
-              }
-            />
+            <Route path="/home/movies" element={<Movies />} />
             <Route
               path="/home/bookmarked"
               element={
