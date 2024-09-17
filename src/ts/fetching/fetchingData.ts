@@ -68,13 +68,13 @@ export const fetchMoviePoster = async (posterUrl: string, content: Movie | TvSer
   }
 };
 
-export const fetchingMoviesListFromGenre = async (iterator: number, genreId: number) => {
+export const fetchingMoviesListFromGenre = async (page: number, genreId: number, apiKey: string) => {
   try {
     const moviesData = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${iterator}&sort_by=popularity.desc&with_genres=${genreId}&with_original_language=en`,
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genreId}`,
     );
     if (!moviesData.ok) {
-      throw new Error(`Failed to fetch genres: ${moviesData.status}`);
+      throw new Error(`Failed to fetch movie list: ${moviesData.status}`);
     }
     const moviesDataJson = await moviesData.json();
     const movieDataResults: Movie[] = moviesDataJson.results;
