@@ -58,13 +58,22 @@ export const fetchingMoviesArray = async (moviesUrl: string, genresUrl: string, 
 
 export const fetchMoviePoster = async (posterUrl: string, content: Movie | TvSeries) => {
   try {
-    if (content === undefined) throw Error("This content does not exist");
-    else {
-      const poster = await fetch(`${posterUrl}${content.backdrop_path}`);
-      return poster;
+    if (!content) {
+      console.error("This content does not exist");
+      return null;
     }
-  } catch (error) {
-    console.log(error);
+
+    const response = await fetch(`${posterUrl}${content.backdrop_path}`);
+
+    if (!response.ok) {
+      console.error(`Failed to fetch poster: ${response.status} - ${response.statusText}`);
+      return null;
+    }
+
+    return response;
+  } catch (error: unknown) {
+    console.error("Error fetching movie poster:", (error as Error).message);
+    return null;
   }
 };
 
