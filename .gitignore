@@ -27,3 +27,5 @@ vite.config.ts
 *.cjs
 src/assets
 src/vite-env.d.ts
+.idx
+.gitignore
