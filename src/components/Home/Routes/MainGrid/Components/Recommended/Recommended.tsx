@@ -43,7 +43,7 @@ export function Recommended() {
 
   return (
     <div className={styles.recommendedContainer}>
-      <p className={styles.homepageSubheading}>Recommended for you</p>
+      <h2 className={styles.homepageSubheading}>Recommended for you</h2>
       <div className={styles.movieCardsContainer}>
         {scrambled.map((tm: Movie | TvSeries, index) => {
           return <Card contentInfo={tm} key={index} styleCode={2} />;
