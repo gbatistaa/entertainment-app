@@ -14,7 +14,7 @@ export function Card({ contentInfo, key, styleCode }: CardType) {
   const [poster, setPoster] = useState("");
   const [contentGenre, setMovieGenre] = useState<string | number>("");
 
-  const testFn: CSSModuleClasses = (classNum: number) => {
+  const moduleSwitcher = (classNum: number) => {
     switch (classNum) {
       case 1:
         //default
@@ -27,6 +27,8 @@ export function Card({ contentInfo, key, styleCode }: CardType) {
         return styles3;
     }
   };
+
+  const cssModule = moduleSwitcher(styleCode) as CSSModuleClasses;
 
   useEffect(() => {
     const fetchingPoster = async () => {
@@ -51,33 +53,27 @@ export function Card({ contentInfo, key, styleCode }: CardType) {
     fetchingGenre();
   }, [setMovieGenre, contentInfo.genre_ids, contentGenre, contentInfo]);
   return (
-    <div
-      key={key}
-      className={isRecommended ? styles2.movieCardContainer : styles.movieCardContainer}
-      style={{ backgroundImage: `url('${poster}')` }}
-    >
-      <div className={isRecommended ? styles2.movieCard : styles.movieCard}>
-        <div className={isRecommended ? styles2.movieInfoContainer : styles.movieInfoContainer}>
-          <div className={isRecommended ? styles2.movieInfoDiv : styles.movieInfoDiv}>
-            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>
+    <div key={key} className={cssModule.movieCardContainer} style={{ backgroundImage: `url('${poster}')` }}>
+      <div className={cssModule.movieCard}>
+        <div className={cssModule.movieInfoContainer}>
+          <div className={cssModule.movieInfoDiv}>
+            <p className={cssModule.movieInfo}>
               {("first_air_date" in contentInfo
                 ? (contentInfo as TvSeries).first_air_date
                 : (contentInfo as Movie).release_date
               ).slice(0, 4)}
             </p>
-            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>
-              {contentGenre === "Science Fiction" ? "Sci-Fi" : contentGenre}
-            </p>
-            <p className={isRecommended ? styles2.movieInfo : styles.movieInfo}>
+            <p className={cssModule.movieInfo}>{contentGenre === "Science Fiction" ? "Sci-Fi" : contentGenre}</p>
+            <p className={cssModule.movieInfo}>
               <FaStar />
               {contentInfo.vote_average.toFixed(1)}
             </p>
           </div>
-          <p className={isRecommended ? styles2.movieTitle : styles.movieTitle}>
+          <p className={cssModule.movieTitle}>
             {"first_air_date" in contentInfo ? (contentInfo as TvSeries).name : (contentInfo as Movie).title}
           </p>
         </div>
-        <div className={isRecommended ? styles2.bookmarkContainer : styles.bookmarkContainer}>
+        <div className={cssModule.bookmarkContainer}>
           <FaRegBookmark />
         </div>
       </div>
