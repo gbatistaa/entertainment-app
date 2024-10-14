@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import * as api from "../../../../ts/Api/links";
-import { fetchingMoviesListFromGenre } from "../../../../ts/fetching/fetchingData";
+import { fetchingMoviesListFromGenre, getMovieGenreByInfo } from "../../../../ts/fetching/fetchingData";
 import { Movie } from "../../../../ts/interfaces/Movie";
+import { Card } from "../../Cards/Card";
+import styles from "./genreMovieList.module.css";
 
 export function GenreMovieList({ genreId }: { genreId: number }) {
   const initialMoviesState: Movie[] = [];
@@ -14,14 +17,28 @@ export function GenreMovieList({ genreId }: { genreId: number }) {
       if (movieList !== undefined) setMoviesOfGenre(movieList);
     };
     fetchMovieList();
-    console.log(moviesOfGenre);
   }, [genreId, moviesOfGenre]);
 
+  useEffect(() => {
+    const fetchGenreName = async () => {
+      const genreNameData = await getMovieGenreByInfo(api.GENRES, api.KEY, genreId);
+      setGenreName(genreNameData as string);
+    };
+    fetchGenreName();
+  }, [genreId]);
+
   return (
-    <div>
-      {moviesOfGenre.map((movie: Movie) => {
-        return <div key={movie.id}>{movie.title}</div>;
-      })}
+    <div className={styles.genreList}>
+      <h2>{genreName}</h2>
+      <div className={styles.genreFilmSwiperContainer}>
+        <Swiper slidesPerView={4} pagination={{ clickable: true }} spaceBetween={30} navigation>
+          {moviesOfGenre.map((movie: Movie, index: number) => {
+            return (
+              <SwiperSlide key={index}>{<Card contentInfo={movie} key={index} isRecommended={false} />}</SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
     </div>
   );
 }
