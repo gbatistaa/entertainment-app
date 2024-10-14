@@ -7,11 +7,26 @@ import { CardType } from "../../../ts/interfaces/CardType";
 import { Movie } from "../../../ts/interfaces/Movie";
 import { TvSeries } from "../../../ts/interfaces/TvSeries";
 import styles2 from "./card2.module.css";
+import styles3 from "./genreMovieCard.module.css";
 import styles from "./movieCard.module.css";
 
-export function Card({ contentInfo, key, isRecommended }: CardType) {
+export function Card({ contentInfo, key, styleCode }: CardType) {
   const [poster, setPoster] = useState("");
   const [contentGenre, setMovieGenre] = useState<string | number>("");
+
+  const testFn: CSSModuleClasses = (classNum: number) => {
+    switch (classNum) {
+      case 1:
+        //default
+        return styles;
+      case 2:
+        //recomended
+        return styles2;
+      case 3:
+        //genres list
+        return styles3;
+    }
+  };
 
   useEffect(() => {
     const fetchingPoster = async () => {
