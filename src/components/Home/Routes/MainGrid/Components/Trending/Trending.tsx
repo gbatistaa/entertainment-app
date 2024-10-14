@@ -26,11 +26,11 @@ export function Trending() {
 
   return (
     <div className={styles.trendingContainer}>
-      <p className={styles.homepageSubheading}>Trending</p>
+      <h2 className={styles.homepageSubheading}>Trending</h2>
       <div className={styles.movieCardsContainer}>
         <Swiper slidesPerView={3} pagination={{ clickable: true }} spaceBetween={30} navigation>
           {trendingMovies.map((tm: Movie | TvSeries, index) => {
-            return <SwiperSlide key={index}>{<Card contentInfo={tm} key={index} isRecommended={false} />}</SwiperSlide>;
+            return <SwiperSlide key={index}>{<Card contentInfo={tm} key={index} styleCode={1} />}</SwiperSlide>;
           })}
         </Swiper>
       </div>
