@@ -33,9 +33,7 @@ export function GenreMovieList({ genreId }: { genreId: number }) {
       <div className={styles.genreFilmSwiperContainer}>
         <Swiper slidesPerView={4} pagination={{ clickable: true }} spaceBetween={30} navigation>
           {moviesOfGenre.map((movie: Movie, index: number) => {
-            return (
-              <SwiperSlide key={index}>{<Card contentInfo={movie} key={index} isRecommended={false} />}</SwiperSlide>
-            );
+            return <SwiperSlide key={index}>{<Card contentInfo={movie} key={index} styleCode={3} />}</SwiperSlide>;
           })}
         </Swiper>
       </div>
