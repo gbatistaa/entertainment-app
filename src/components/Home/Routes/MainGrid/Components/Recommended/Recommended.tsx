@@ -46,7 +46,7 @@ export function Recommended() {
       <p className={styles.homepageSubheading}>Recommended for you</p>
       <div className={styles.movieCardsContainer}>
         {scrambled.map((tm: Movie | TvSeries, index) => {
-          return <Card contentInfo={tm} key={index} isRecommended={true} />;
+          return <Card contentInfo={tm} key={index} styleCode={2} />;
         })}
       </div>
     </div>
